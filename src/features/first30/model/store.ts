@@ -1,9 +1,10 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useSyncExternalStore } from "react";
 import { create } from "zustand";
 import { createJSONStorage, persist, type StateStorage } from "zustand/middleware";
 import type { Resolution } from "./priorities";
+import { sanitizePersisted } from "./sanitize";
 import type { BudgetCategory, CityId, StudentProfile } from "./types";
 
 type PerCity<T> = Partial<Record<CityId, T>>;
@@ -121,6 +122,7 @@ export const useFirst30Store = create<First30State>()(
       version: 1,
       storage: createJSONStorage(() => safeStorage),
       skipHydration: true,
+      merge: (persisted, current) => ({ ...current, ...sanitizePersisted(persisted) }),
       partialize: ({ activeCity, profiles, resolutions, stepChecks, budgets }) => ({
         activeCity,
         profiles,
@@ -132,26 +134,25 @@ export const useFirst30Store = create<First30State>()(
   ),
 );
 
+const subscribeHydration = (notify: () => void) => useFirst30Store.persist.onFinishHydration(notify);
+const isHydrated = () => useFirst30Store.persist.hasHydrated();
+const notHydratedOnServer = () => false;
+
 /**
  * Static HTML is rendered without any saved progress, so components wait for
  * this flag before reading persisted state. That keeps hydration consistent.
  */
 export function useStoreHydrated() {
-  const [hydrated, setHydrated] = useState(() => useFirst30Store.persist.hasHydrated());
+  const hydrated = useSyncExternalStore(subscribeHydration, isHydrated, notHydratedOnServer);
 
   useEffect(() => {
-    const unsubscribe = useFirst30Store.persist.onFinishHydration(() => setHydrated(true));
     if (!useFirst30Store.persist.hasHydrated()) void useFirst30Store.persist.rehydrate();
-    else setHydrated(true);
 
     const syncTabs = (event: StorageEvent) => {
       if (event.key === useFirst30Store.persist.getOptions().name) void useFirst30Store.persist.rehydrate();
     };
     window.addEventListener("storage", syncTabs);
-    return () => {
-      unsubscribe();
-      window.removeEventListener("storage", syncTabs);
-    };
+    return () => window.removeEventListener("storage", syncTabs);
   }, []);
 
   return hydrated;

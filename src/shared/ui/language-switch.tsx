@@ -19,9 +19,11 @@ export function LanguageSwitch({ className }: { className?: string }) {
             href={pathname}
             locale={target}
             hrefLang={target}
-            aria-current={target === locale ? "true" : undefined}
+            lang={target}
+            aria-label={new Intl.DisplayNames([target], { type: "language" }).of(target)}
+            aria-current={target === locale ? "page" : undefined}
             className={cn(
-              "grid min-h-11 min-w-9 place-items-center uppercase no-underline",
+              "grid min-h-11 min-w-11 place-items-center uppercase no-underline",
               target === locale ? "text-text" : "text-muted hover:text-text",
             )}
           >

@@ -55,6 +55,8 @@ function Row({ item, cityId, day }: { item: PlannedTask; cityId: CityId; day: nu
                 <Check size={14} className="text-accent" />
                 {state === "skipped" ? t("timeline.skippedNote") : t("task.done")}
               </>
+            ) : state === "upcoming" ? (
+              <>{t("dashboard.opensOn", { day: from })}</>
             ) : state === "blocked" ? (
               <>
                 <Lock size={14} />
@@ -64,6 +66,8 @@ function Row({ item, cityId, day }: { item: PlannedTask; cityId: CityId; day: nu
               <>
                 <TierDot tier={tier} className="size-2.5" />
                 {t("task.minutes", { count: task.minutes })}
+                <span aria-hidden="true">·</span>
+                <span className="num">{t("timeline.days", { from, to: due })}</span>
               </>
             )}
           </span>

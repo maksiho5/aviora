@@ -1,12 +1,14 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { useEffect, useState } from "react";
+import { useEffect, useSyncExternalStore } from "react";
 import { resolveTheme, THEME_STORAGE_KEY, themes, type ThemePreference } from "@/shared/config/theme";
 import { cn } from "@/shared/lib/cn";
 import { Monitor, Moon, Sun } from "./icons";
 
 const icons = { light: Sun, dark: Moon, system: Monitor } satisfies Record<ThemePreference, unknown>;
+
+const THEME_EVENT = "aviora:theme";
 
 function readPreference(): ThemePreference {
   try {
@@ -17,17 +19,22 @@ function readPreference(): ThemePreference {
   }
 }
 
+function subscribe(notify: () => void) {
+  window.addEventListener(THEME_EVENT, notify);
+  window.addEventListener("storage", notify);
+  return () => {
+    window.removeEventListener(THEME_EVENT, notify);
+    window.removeEventListener("storage", notify);
+  };
+}
+
 function applyTheme(preference: ThemePreference) {
   document.documentElement.dataset.theme = resolveTheme(preference);
 }
 
 export function ThemeToggle({ className }: { className?: string }) {
   const t = useTranslations("theme");
-  const [preference, setPreference] = useState<ThemePreference>("light");
-
-  useEffect(() => {
-    setPreference(readPreference());
-  }, []);
+  const preference = useSyncExternalStore(subscribe, readPreference, () => "light" as const);
 
   useEffect(() => {
     if (preference !== "system") return;
@@ -38,13 +45,13 @@ export function ThemeToggle({ className }: { className?: string }) {
   }, [preference]);
 
   const choose = (next: ThemePreference) => {
-    setPreference(next);
     applyTheme(next);
     try {
       localStorage.setItem(THEME_STORAGE_KEY, next);
     } catch {
       // Private mode: the choice simply lasts for this page view.
     }
+    window.dispatchEvent(new Event(THEME_EVENT));
   };
 
   return (

@@ -1,7 +1,7 @@
 "use client";
 
 import { useLocale, useTranslations } from "next-intl";
-import { useRef, useState } from "react";
+import { useId, useRef, useState } from "react";
 import type { Locale } from "@/i18n/routing";
 import { cn } from "@/shared/lib/cn";
 import { Close } from "@/shared/ui/icons";
@@ -25,6 +25,7 @@ export function StuckSheet({ city, day, task, className, children }: StuckSheetP
   const t = useTranslations("first30.stuck");
   const locale = useLocale() as Locale;
   const dialogRef = useRef<HTMLDialogElement>(null);
+  const titleId = useId();
   const [reason, setReason] = useState<Reason | null>(null);
   const [copied, setCopied] = useState(false);
   const resolveTask = useFirst30Store((state) => state.resolveTask);
@@ -57,12 +58,12 @@ export function StuckSheet({ city, day, task, className, children }: StuckSheetP
       </button>
       <dialog
         ref={dialogRef}
-        aria-labelledby="stuck-title"
+        aria-labelledby={titleId}
         className="m-0 mt-auto max-h-[90dvh] w-full max-w-none rounded-t-[var(--radius-lg)] bg-surface p-0 text-text shadow-[var(--shadow-sheet)] backdrop:bg-black/40 open:animate-[rise_320ms_var(--ease-soft)_both] sm:m-auto sm:max-w-[480px] sm:rounded-[var(--radius-lg)]"
       >
         <div className="p-6 sm:p-8">
           <div className="flex items-start justify-between gap-4">
-            <h2 id="stuck-title" className="font-serif text-[2rem] italic leading-tight">
+            <h2 id={titleId} className="font-serif text-[2rem] italic leading-tight">
               {t("title")}
             </h2>
             <button
@@ -134,7 +135,7 @@ export function StuckSheet({ city, day, task, className, children }: StuckSheetP
                 onClick={copySummary}
                 className="inline-flex min-h-11 items-center rounded-full border border-control px-5 text-[0.9375rem] font-semibold hover:bg-surface-2"
               >
-                {copied ? t("copied") : t("copy")}
+                <span aria-live="polite">{copied ? t("copied") : t("copy")}</span>
               </button>
             </div>
             <p className="mt-4 text-sm text-muted">

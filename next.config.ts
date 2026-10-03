@@ -28,6 +28,7 @@ const securityHeaders = [
 ];
 
 const nextConfig: NextConfig = {
+  output: "standalone",
   poweredByHeader: false,
   turbopack: {
     resolveAlias: { "next-intl/config": "./src/i18n/request.ts" },

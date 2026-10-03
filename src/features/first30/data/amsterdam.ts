@@ -74,8 +74,8 @@ export const amsterdam: CityGuide = {
       id: "municipality-registration",
       title: l("Municipality registration", "Регистрация в муниципалитете"),
       summary: l(
-        "Register in the BRP at the city’s appointment desk if you stay longer than four months.",
-        "Зарегистрируйся в BRP в муниципалитете, если остаёшься дольше четырёх месяцев.",
+        "Staying longer than four months? Register in the BRP soon after arrival. It needs an appointment.",
+        "Остаёшься дольше четырёх месяцев? Зарегистрируйся в BRP вскоре после приезда. Нужна запись.",
       ),
       category: "admin",
       urgency: "critical",
@@ -227,8 +227,8 @@ export const amsterdam: CityGuide = {
       id: "health-insurance-nl",
       title: l("Check your health insurance", "Проверь медицинскую страховку"),
       summary: l(
-        "If you take a part-time job, Dutch basic insurance becomes mandatory.",
-        "Если устроишься на подработку, базовая голландская страховка станет обязательной.",
+        "Whether Dutch basic insurance is mandatory depends on your situation, for example if you start working here.",
+        "Обязательна ли базовая голландская страховка, зависит от ситуации, например если ты начнёшь здесь работать.",
       ),
       category: "health",
       urgency: "important",
@@ -238,8 +238,8 @@ export const amsterdam: CityGuide = {
       steps: [
         l("Check what your current student insurance covers.", "Проверь, что покрывает твоя студенческая страховка."),
         l(
-          "If you start working, switch to Dutch basic insurance within four months.",
-          "Если начнёшь работать, перейди на базовую голландскую страховку в течение четырёх месяцев.",
+          "Use the official checker to see whether you need Dutch basic insurance.",
+          "Проверь на официальном сайте, нужна ли тебе базовая голландская страховка.",
         ),
       ],
       documents: [l("BSN", "BSN"), l("Current policy", "Текущий полис")],

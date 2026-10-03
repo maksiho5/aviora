@@ -22,7 +22,7 @@ export function Postcard() {
           </div>
           <figcaption className="flex items-center justify-between px-1 pb-1 pt-3 font-serif text-lg italic text-[#292728]">
             <span>Roma</span>
-            <span aria-hidden="true" className="grid size-9 place-items-center border border-dashed border-[#bdb7a7] text-[0.625rem] not-italic tracking-widest">
+            <span aria-hidden="true" className="grid size-9 place-items-center border border-dashed border-oatmeal text-[0.625rem] not-italic tracking-widest">
               IT
             </span>
           </figcaption>

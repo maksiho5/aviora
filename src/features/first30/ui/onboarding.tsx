@@ -1,7 +1,7 @@
 "use client";
 
 import { useLocale, useTranslations } from "next-intl";
-import { useId, useMemo, useState } from "react";
+import { useId, useState } from "react";
 import { useRouter } from "@/i18n/navigation";
 import type { Locale } from "@/i18n/routing";
 import { cn } from "@/shared/lib/cn";
@@ -9,8 +9,9 @@ import { Button } from "@/shared/ui/button";
 import { getCity } from "../data";
 import { dayOfStay, parseIsoDate, toIsoDate } from "../model/day";
 import { tasksForProfile } from "../model/priorities";
-import { useFirst30Store } from "../model/store";
+import { useFirst30Store, useStoreHydrated } from "../model/store";
 import type { CityId } from "../model/types";
+import { useToday } from "../model/use-today";
 
 type Permit = "no" | "yes" | "unsure";
 type Step = 0 | 1 | 2 | 3;
@@ -32,7 +33,7 @@ function Choice({ checked, onChange, children }: { checked: boolean; onChange: (
       )}
     >
       {children}
-      <input type="radio" checked={checked} onChange={onChange} className="sr-only" />
+      <input type="radio" name="permit" checked={checked} onChange={onChange} className="sr-only" />
       <span
         aria-hidden="true"
         className={cn("ml-auto size-5 shrink-0 rounded-full border-2", checked ? "border-accent bg-accent shadow-[inset_0_0_0_3px_var(--surface)]" : "border-control")}
@@ -50,9 +51,11 @@ export function Onboarding({ cityId }: { cityId: CityId }) {
   const dateId = useId();
   const errorId = useId();
 
-  const today = useMemo(() => new Date(), []);
+  const hydrated = useStoreHydrated();
+  const todayIso = useToday();
+  const today = parseIsoDate(todayIso);
   const [step, setStep] = useState<Step>(0);
-  const [arrival, setArrival] = useState(() => toIsoDate(today));
+  const [arrival, setArrival] = useState(todayIso);
   const [dateError, setDateError] = useState(false);
   const [permit, setPermit] = useState<Permit>("yes");
   const [alreadyDone, setAlreadyDone] = useState<string[]>([]);
@@ -138,7 +141,7 @@ export function Onboarding({ cityId }: { cityId: CityId }) {
             </div>
             <button
               type="button"
-              onClick={() => setArrival(toIsoDate(today))}
+              onClick={() => setArrival(todayIso)}
               className="min-h-14 rounded-[var(--radius-sm)] border border-line bg-surface-2 px-5 font-semibold hover:bg-surface-3"
             >
               {t("today")}
@@ -208,7 +211,7 @@ export function Onboarding({ cityId }: { cityId: CityId }) {
         ) : (
           <span />
         )}
-        <Button type="submit">{step === 2 && alreadyDone.length === 0 ? t("nothingYet") : t("continue")}</Button>
+        <Button type="submit" disabled={!hydrated}>{step === 2 && alreadyDone.length === 0 ? t("nothingYet") : t("continue")}</Button>
       </div>
       <p className="mt-8 text-center text-sm text-muted">{t("privacy")}</p>
     </form>

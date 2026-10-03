@@ -81,7 +81,7 @@ export function Dashboard({ cityId }: { cityId: CityId }) {
 
   const { plan, day, tomorrow, progress, city, tasks, resolutions } = view;
   const cityName = city.name[locale];
-  const tip = city.tips[Math.abs(day) % city.tips.length];
+  const tip = city.tips[(Number.isFinite(day) ? Math.abs(day) : 0) % city.tips.length];
   const doneTasks = tasks.filter((item) => resolutions[item.id] === "done");
 
   const complete = (item: PlannedTask) => {
@@ -114,7 +114,7 @@ export function Dashboard({ cityId }: { cityId: CityId }) {
         )}
         <h1 className="t-display-l mt-3">{t(`headline.${headlineFor(day, plan)}`)}</h1>
 
-        <h2 className="mt-10 text-xs font-semibold uppercase tracking-[0.14em] text-muted">{t("priorities")}</h2>
+        <h2 className="t-eyebrow mt-10 text-text">{t("priorities")}</h2>
         {plan.priorities.length > 0 ? (
           <ol aria-label={t("priorities")} className="mt-3 space-y-3">
             {plan.priorities.map((item) => (
@@ -142,6 +142,12 @@ export function Dashboard({ cityId }: { cityId: CityId }) {
             <p className="mt-1 text-muted">{t("nothingText")}</p>
           </div>
         )}
+        <div className="mt-4 flex flex-wrap items-center gap-x-2 text-[0.9375rem]">
+          <span className="text-muted">{t("needHelp")}</span>
+          <StuckSheet city={cityId} day={day} className="inline-flex min-h-11 items-center gap-1 font-semibold link-underline">
+            {t("stuck")} <ArrowRight size={16} />
+          </StuckSheet>
+        </div>
         <p className="sr-only" aria-live="polite">
           {announcement}
         </p>
@@ -205,7 +211,7 @@ export function Dashboard({ cityId }: { cityId: CityId }) {
       <aside className="space-y-8 lg:sticky lg:top-24 lg:col-span-4 lg:col-start-9 lg:self-start">
         {plan.alsoNeeded.length > 0 && (
           <section>
-            <h2 className="text-sm font-semibold text-muted">{t("alsoNeed")}</h2>
+            <h2 className="t-eyebrow text-muted">{t("alsoNeed")}</h2>
             <ul className="mt-3 space-y-2">
               {plan.alsoNeeded.map((item) => (
                 <li key={item.task.id}>
@@ -236,12 +242,6 @@ export function Dashboard({ cityId }: { cityId: CityId }) {
           <p className="mt-2 font-serif text-[1.5rem] italic leading-snug">“{tip.text[locale]}”</p>
         </blockquote>
 
-        <p className="flex flex-wrap items-center gap-x-2 text-[0.9375rem]">
-          <span className="text-muted">{t("needHelp")}</span>
-          <StuckSheet city={cityId} day={day} className="inline-flex min-h-11 items-center gap-1 font-semibold link-underline">
-            {t("stuck")} <ArrowRight size={16} />
-          </StuckSheet>
-        </p>
 
         <button type="button" onClick={reset} className="min-h-11 text-sm text-muted link-underline">
           {t("reset", { city: cityName })}

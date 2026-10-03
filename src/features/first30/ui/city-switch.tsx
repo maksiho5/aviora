@@ -7,7 +7,7 @@ import type { Locale } from "@/i18n/routing";
 import { cn } from "@/shared/lib/cn";
 import { Check, ChevronDown } from "@/shared/ui/icons";
 import { cities, cityIds } from "../data";
-import { useFirst30Store } from "../model/store";
+import { useFirst30Store, useStoreHydrated } from "../model/store";
 import type { CityId } from "../model/types";
 
 export function CitySwitch({ current }: { current: CityId }) {
@@ -15,7 +15,8 @@ export function CitySwitch({ current }: { current: CityId }) {
   const locale = useLocale() as Locale;
   const router = useRouter();
   const setActiveCity = useFirst30Store((state) => state.setActiveCity);
-  const profiles = useFirst30Store((state) => state.profiles);
+  const hydrated = useStoreHydrated();
+  const startedCities = useFirst30Store((state) => cityIds.filter((id) => state.profiles[id]).join(","));
   const [open, setOpen] = useState(false);
   const rootRef = useRef<HTMLDivElement>(null);
 
@@ -37,7 +38,7 @@ export function CitySwitch({ current }: { current: CityId }) {
   const choose = (city: CityId) => {
     setOpen(false);
     setActiveCity(city);
-    router.push(profiles[city] ? `/first-30/${city}` : `/first-30/${city}/onboarding`);
+    router.push(startedCities.split(",").includes(city) ? `/first-30/${city}` : `/first-30/${city}/onboarding`);
   };
 
   return (
@@ -45,6 +46,7 @@ export function CitySwitch({ current }: { current: CityId }) {
       <button
         type="button"
         onClick={() => setOpen((value) => !value)}
+        disabled={!hydrated}
         aria-expanded={open}
         aria-haspopup="true"
         aria-label={t("city.current", { city: cities[current].name[locale] })}

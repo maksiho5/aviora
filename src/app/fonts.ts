@@ -3,7 +3,7 @@ import { Cormorant, Inter } from "next/font/google";
 export const serif = Cormorant({
   subsets: ["latin", "latin-ext", "cyrillic"],
   style: ["normal", "italic"],
-  weight: ["400", "500", "600"],
+  weight: ["500", "600"],
   display: "swap",
   variable: "--f-serif",
 });

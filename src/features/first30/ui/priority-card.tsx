@@ -26,7 +26,8 @@ export function PriorityCard({ item, city, interactive = true, action }: Priorit
     <div
       className={cn(
         "relative flex min-h-[76px] items-start gap-3 rounded-[var(--radius-md)] border border-line bg-surface p-4",
-        interactive && "transition-colors duration-[var(--dur-instant)] hover:bg-surface-2",
+        interactive &&
+          "transition-colors duration-[var(--dur-instant)] hover:bg-surface-2 has-[a:focus-visible]:outline-2 has-[a:focus-visible]:outline-offset-2 has-[a:focus-visible]:outline-[var(--focus)]",
       )}
     >
       <span className="grid size-6 place-items-center pt-0.5">

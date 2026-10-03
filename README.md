@@ -1,36 +1,68 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Aviora
 
-## Getting Started
+Discover Italy. Study here. Live here.
 
-First, run the development server:
+An editorial site about studying and living in Italy, plus **FIRST 30**, a small app that tells international students arriving in Milan (and Amsterdam) what to do today, in the right order.
+
+## Stack
+
+Next.js 16 (App Router, Turbopack) · React 19 · TypeScript · Tailwind CSS 4 · next-intl (EN, RU) · Zustand · Vitest
+
+Every page is statically generated for both locales, so the whole site can be served from a CDN. There is no backend: FIRST 30 keeps a student's progress in their own browser.
+
+## Getting started
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev        # http://localhost:3000
+npm run check      # lint, types, tests, translation keys
+npm run build
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Copy `.env.example` to `.env` and set `NEXT_PUBLIC_SITE_URL` before a production build. It is used for canonical links and the sitemap.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+src/
+  app/                 routes only: params, metadata, static params
+    [locale]/(site)/   editorial pages with the site header and footer
+    [locale]/first-30/[city]/  the app, with its own shell
+  views/               page compositions, one folder per page
+  widgets/             blocks shared by several pages (header, footer, city index)
+  features/first30/
+    data/              city guides: tasks, dependencies, sources, places
+    model/             pure logic (priorities, days, budget) and the store
+    ui/                dashboard, onboarding, task page, timeline, map, budget
+  content/             editorial content in EN and RU
+  shared/              design primitives, config, helpers
+  i18n/                routing and request config
+messages/              UI strings (en.json, ru.json)
+```
 
-## Learn More
+Dependencies point one way: `app → views → widgets/features → shared`.
 
-To learn more about Next.js, take a look at the following resources:
+## How FIRST 30 picks today's three priorities
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+`features/first30/model/priorities.ts` is a pure function of the task list, what is done and the day of the stay:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- a task is ready when its window has opened and everything it depends on is done or does not apply to the student
+- ready tasks are scored on deadline pressure, importance, how many tasks they unblock, and effort
+- three are chosen with at most two per category and about 90 minutes in total
+- "You might also need" fills in categories the priorities do not cover
 
-## Deploy on Vercel
+`priorities.test.ts` pins the day-7 screen from the brief: Residence registration, Student ID, Find a supermarket, then Bank account, Healthcare and Transport.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Adding a city
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Add `features/first30/data/<city>.ts` with the same `CityGuide` shape, register it in `data/index.ts`, and add the id to `CityId`. The data tests check ids, dependencies and cycles. No UI changes are needed.
+
+## Deploying
+
+- **Vercel**: import the repository, set `NEXT_PUBLIC_SITE_URL`, deploy.
+- **Docker**: `docker build -t aviora . && docker run -p 3000:3000 aviora`
+- **Any Node host**: `npm run build && npm start`
+
+## Content notes
+
+Fees, addresses and procedures change. Task pages link to the official source for each step; check them before each intake. Photos come from the client's moodboard: confirm licences before launch.

@@ -6,7 +6,11 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit",
+    "check:i18n": "node scripts/check-i18n.mjs",
+    "check": "npm run lint && npm run typecheck && npm run test && npm run check:i18n"
   },
   "dependencies": {
     "clsx": "^2.1.1",

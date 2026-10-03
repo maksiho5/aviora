@@ -1,13 +1,16 @@
 import type { Metadata, Viewport } from "next";
 import { notFound } from "next/navigation";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
-import { getTranslations, setRequestLocale } from "next-intl/server";
+import { getMessages, getTranslations, setRequestLocale } from "next-intl/server";
 import { routing, type Locale } from "@/i18n/routing";
 import { site } from "@/shared/config/site";
 import { themeBootScript } from "@/shared/config/theme";
 import { RevealObserver } from "@/shared/ui/reveal-observer";
 import { sans, serif } from "../fonts";
 import "../globals.css";
+
+/** Only namespaces used by client components are serialized into the page. */
+const CLIENT_NAMESPACES = ["nav", "theme", "telegram", "first30"] as const;
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -37,6 +40,8 @@ export default async function LocaleLayout({ children, params }: LayoutProps<"/[
   const { locale } = await params;
   if (!hasLocale(routing.locales, locale)) notFound();
   setRequestLocale(locale);
+  const messages = await getMessages();
+  const clientMessages = Object.fromEntries(CLIENT_NAMESPACES.map((key) => [key, messages[key]]));
 
   return (
     <html lang={locale} data-theme="light" className={`${sans.variable} ${serif.variable}`} suppressHydrationWarning>
@@ -44,7 +49,7 @@ export default async function LocaleLayout({ children, params }: LayoutProps<"/[
         <script dangerouslySetInnerHTML={{ __html: themeBootScript }} />
       </head>
       <body className="antialiased">
-        <NextIntlClientProvider>
+        <NextIntlClientProvider messages={clientMessages}>
           {children}
           <RevealObserver />
         </NextIntlClientProvider>

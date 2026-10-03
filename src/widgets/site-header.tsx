@@ -26,7 +26,9 @@ function useHideOnScroll() {
     let last = window.scrollY;
     const onScroll = () => {
       const y = window.scrollY;
-      setState({ hidden: y > 64 && y > last, scrolled: y > 8 });
+      const hidden = y > 64 && y > last;
+      const scrolled = y > 8;
+      setState((prev) => (prev.hidden === hidden && prev.scrolled === scrolled ? prev : { hidden, scrolled }));
       last = y;
     };
     window.addEventListener("scroll", onScroll, { passive: true });
@@ -61,7 +63,7 @@ export function SiteHeader() {
         className={cn(
           "sticky top-0 z-40 border-b bg-bg transition-[translate,border-color] duration-[var(--dur-fast)] ease-[var(--ease-soft)]",
           scrolled ? "border-line" : "border-transparent",
-          hidden && !menuOpen && "-translate-y-full",
+          hidden && !menuOpen && "-translate-y-full focus-within:translate-y-0",
         )}
       >
         <div className="container-content flex h-16 items-center gap-6 lg:h-[72px]">
@@ -132,7 +134,7 @@ export function SiteHeader() {
             <ul className="space-y-1">
               <li>
                 <Link href="/first-30" className="t-display-l block py-2 text-accent no-underline">
-                  First 30
+                  {t("first30")}
                 </Link>
               </li>
               {links.map(({ href, key }) => (

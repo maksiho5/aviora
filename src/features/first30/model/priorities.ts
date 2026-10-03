@@ -83,7 +83,11 @@ function pickPriorities(ready: PlannedTask[]) {
   const last = picked.at(-1);
   if (minutes > DAILY_MINUTES_CAP && last) {
     const quick = ready.find(
-      (item) => !picked.includes(item) && item.task.minutes <= QUICK_TASK_MINUTES && item.task.minutes < last.task.minutes,
+      (item) =>
+        !picked.includes(item) &&
+        item.task.minutes <= QUICK_TASK_MINUTES &&
+        item.task.minutes < last.task.minutes &&
+        picked.slice(0, -1).filter((other) => other.task.category === item.task.category).length < MAX_PER_CATEGORY,
     );
     if (quick) picked[picked.length - 1] = quick;
   }

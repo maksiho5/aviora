@@ -203,8 +203,8 @@ export const milan: CityGuide = {
         },
       ],
       tip: l(
-        "Fees change. Check the amount on the official portal before you go.",
-        "Сборы меняются. Проверь сумму на официальном портале перед походом.",
+        "The total depends on how long the permit is for. Check the amount on the official portal before you go.",
+        "Итоговая сумма зависит от срока permesso. Проверь её на официальном портале перед походом.",
       ),
     },
     {
@@ -411,7 +411,7 @@ export const milan: CityGuide = {
         l("Passport", "Паспорт"),
       ],
       sources: [{ kind: "official", label: l("Polizia di Stato", "Polizia di Stato"), url: poliziaDiStato }],
-      place: { name: "Questura di Milano", address: "Via Fatebenefratelli 11, Milano", lat: 45.4733, lng: 9.1906 },
+      place: { name: "Questura di Milano · Ufficio Immigrazione", address: "Via Montebello 26, Milano", lat: 45.4764, lng: 9.1953 },
     },
     {
       id: "healthcare",

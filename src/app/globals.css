@@ -186,7 +186,11 @@
   :focus-visible {
     outline: 2px solid var(--focus);
     outline-offset: 2px;
-    border-radius: 4px;
+  }
+
+  .bg-deep :focus-visible,
+  .bg-accent :focus-visible {
+    outline-color: var(--on-deep);
   }
 
   ::selection {
@@ -278,7 +282,7 @@
     mask-image: radial-gradient(closest-side, #000 62%, transparent 100%);
   }
   [data-theme="dark"] .img-cut {
-    display: none;
+    display: none !important;
   }
   [data-theme="dark"] .img-film,
   [data-theme="dark"] .img-mono {
@@ -305,6 +309,9 @@
     text-decoration-color: currentColor;
   }
 
+  .stretched-link:focus-visible {
+    outline: none;
+  }
   .stretched-link::after {
     content: "";
     position: absolute;
