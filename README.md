@@ -1,68 +1,181 @@
-# Aviora
+# Aviora · FIRST 30
 
-Discover Italy. Study here. Live here.
+**Discover Italy. Study here. Live here.**
 
-An editorial site about studying and living in Italy, plus **FIRST 30**, a small app that tells international students arriving in Milan (and Amsterdam) what to do today, in the right order.
+**Демо:** https://maksiho5.github.io/aviora/
 
-## Stack
+Aviora — сайт про учёбу и жизнь в Италии: университеты, поступление, города, бытовые вопросы и менторство от студентов. Внутри него живёт **FIRST 30** — небольшое приложение для иностранного студента, который только что прилетел в Милан. Оно каждый день показывает три дела на сегодня, в правильном порядке, с учётом того, что от чего зависит.
 
-Next.js 16 (App Router, Turbopack) · React 19 · TypeScript · Tailwind CSS 4 · next-intl (EN, RU) · Zustand · Vitest
+> Студентам не хватает не информации, а приоритетов. FIRST 30 отвечает на один вопрос: «что мне сделать сегодня?»
 
-Every page is statically generated for both locales, so the whole site can be served from a CDN. There is no backend: FIRST 30 keeps a student's progress in their own browser.
+---
 
-## Getting started
+## Что можно посмотреть
 
-```bash
-npm install
-npm run dev        # http://localhost:3000
-npm run check      # lint, types, tests, translation keys
-npm run build
+| Раздел | Адрес | Что там |
+|---|---|---|
+| Главная | `/en`, `/ru` | Идея проекта, учёба, мелочи жизни, города, практичная Италия |
+| Учёба | `/en/study` | Поступление по шагам, университеты, стипендии |
+| Города | `/en/cities`, `/en/cities/milan` | Пять городов через учёбу, жизнь, расходы и открытия |
+| Практика | `/en/practical` | Документы, жильё, транспорт, банк, медицина |
+| Менторство | `/en/mentorship` | Алия, исследование на 150+ студентах, четыре формата, связь через Telegram |
+| Команда | `/en/team` | Основатели проекта |
+| **FIRST 30** | `/en/first-30` | Лендинг приложения и выбор города |
+| Приложение | `/en/first-30/milan` | Онбординг → дашборд → задача → месяц → карта → бюджет |
+| Кейс | `/en/case-study` | Как проектировался продукт: 16 разделов от исследования до рефлексии |
+
+Чтобы попробовать приложение, откройте `/en/first-30/milan/onboarding`, укажите дату приезда, и дашборд соберёт ваш месяц. Есть переключение на Амстердам: та же система, другие местные правила (BSN, OVpay, регистрация в муниципалитете).
+
+Сайт на двух языках (EN и RU), со светлой и тёмной темой, адаптирован под телефон от 360px.
+
+---
+
+## Технологии
+
+| | |
+|---|---|
+| Фреймворк | Next.js 16 (App Router, Turbopack), React 19 |
+| Язык | TypeScript (strict) |
+| Стили | Tailwind CSS 4, дизайн-токены в CSS-переменных |
+| Локализация | next-intl (EN, RU), ICU-сообщения с плюралами |
+| Состояние | Zustand + persist (localStorage) |
+| Тесты | Vitest |
+| Хостинг | GitHub Pages (статический экспорт), Vercel или Docker |
+
+Бэкенда нет. Все страницы генерируются заранее для обоих языков, поэтому сайт отдаётся с CDN и выдерживает любой трафик. Прогресс студента хранится только в его браузере: ни аккаунтов, ни форм, ни сбора персональных данных.
+
+---
+
+## Архитектура
+
+### Слои
+
+```mermaid
+flowchart TD
+    app["app/ — маршруты<br/>params, метаданные, generateStaticParams"]
+    views["views/ — страницы<br/>собирают секции"]
+    widgets["widgets/ — общие блоки<br/>шапка, футер, список городов"]
+    feature["features/first30/ — приложение<br/>data · model · ui"]
+    content["content/ — редакционный контент<br/>EN + RU"]
+    shared["shared/ — фундамент<br/>UI-примитивы, конфиг, хелперы"]
+
+    app --> views
+    app --> feature
+    views --> widgets
+    views --> feature
+    views --> content
+    widgets --> shared
+    feature --> shared
+    content --> shared
 ```
 
-Copy `.env.example` to `.env` and set `NEXT_PUBLIC_SITE_URL` before a production build. It is used for canonical links and the sitemap.
+Зависимости идут в одну сторону: сверху вниз. Маршруты в `app/` тонкие и только связывают URL со страницей. Логика FIRST 30 написана чистыми функциями и не зависит от React.
 
-## Structure
+### Структура папок
 
 ```
 src/
-  app/                 routes only: params, metadata, static params
-    [locale]/(site)/   editorial pages with the site header and footer
-    [locale]/first-30/[city]/  the app, with its own shell
-  views/               page compositions, one folder per page
-  widgets/             blocks shared by several pages (header, footer, city index)
-  features/first30/
-    data/              city guides: tasks, dependencies, sources, places
-    model/             pure logic (priorities, days, budget) and the store
-    ui/                dashboard, onboarding, task page, timeline, map, budget
-  content/             editorial content in EN and RU
-  shared/              design primitives, config, helpers
-  i18n/                routing and request config
-messages/              UI strings (en.json, ru.json)
+├── app/
+│   ├── (entry)/                 корневой "/" — выбор языка на статическом хостинге
+│   └── [locale]/
+│       ├── (site)/              редакционные страницы с шапкой и футером
+│       └── first-30/[city]/     приложение со своей оболочкой и вкладками
+├── views/                       одна папка на страницу: home, study, cities, ...
+├── widgets/                     site-header, site-footer, city-index, practical-grid
+├── features/first30/
+│   ├── data/                    города: задачи, зависимости, источники, места
+│   ├── model/                   priorities, day, budget, store, sanitize — чистая логика
+│   └── ui/                      dashboard, onboarding, task-detail, timeline, map, budget
+├── content/                     cities, mentorship, case-study (EN + RU)
+├── shared/
+│   ├── ui/                      Button, Eyebrow, Circled, ThemeToggle, LanguageSwitch...
+│   ├── config/                  site, seo, theme
+│   ├── lib/                     cn, localized
+│   └── assets/                  реестр изображений (статические импорты → blur-плейсхолдеры)
+├── i18n/                        routing, request, navigation
+└── proxy.ts                     редирект на язык по Accept-Language (на сервере)
+messages/                        en.json, ru.json — строки интерфейса
+scripts/                         проверка переводов, подготовка статического экспорта
 ```
 
-Dependencies point one way: `app → views → widgets/features → shared`.
+### Как FIRST 30 выбирает три дела на сегодня
 
-## How FIRST 30 picks today's three priorities
+```mermaid
+flowchart LR
+    A[Все задачи города] --> B{Подходит профилю?<br/>например, permesso<br/>только не для ЕС}
+    B --> C{Окно открыто<br/>и зависимости<br/>выполнены?}
+    C -- нет --> D[Ждёт / скоро]
+    C -- да --> E[Готова]
+    E --> F[Оценка:<br/>срок + важность +<br/>сколько разблокирует − усилие]
+    F --> G[Топ-3<br/>не больше 2 из одной категории<br/>≈ 90 минут в сумме]
+    D --> H[«Может понадобиться»]
+```
 
-`features/first30/model/priorities.ts` is a pure function of the task list, what is done and the day of the stay:
+- `features/first30/model/priorities.ts` — чистая функция `planDay(tasks, resolved, day)`.
+- Задача, от которой зависят другие (например, codice fiscale → банк, SIM, проездной), поднимается выше.
+- Просроченное выходит наверх со спокойной формулировкой, без тревожных красных счётчиков.
+- Завтра список другой: открываются новые задачи. Это главный повод вернуться в приложение.
 
-- a task is ready when its window has opened and everything it depends on is done or does not apply to the student
-- ready tasks are scored on deadline pressure, importance, how many tasks they unblock, and effort
-- three are chosen with at most two per category and about 90 minutes in total
-- "You might also need" fills in categories the priorities do not cover
+Тест `priorities.test.ts` фиксирует экран из ТЗ. На 7-й день: Residence registration, Student ID, Find a supermarket, а ниже Transport, Healthcare и Bank account.
 
-`priorities.test.ts` pins the day-7 screen from the brief: Residence registration, Student ID, Find a supermarket, then Bank account, Healthcare and Transport.
+### Данные пользователя
 
-## Adding a city
+```mermaid
+sequenceDiagram
+    participant HTML as Статический HTML
+    participant UI as Компонент
+    participant Store as Zustand store
+    participant LS as localStorage
+    HTML->>UI: рендер без личных данных (скелетон)
+    UI->>Store: rehydrate()
+    Store->>LS: читает "aviora.first30"
+    LS-->>Store: JSON
+    Store->>Store: sanitize — отбрасывает всё неизвестное
+    Store-->>UI: hydrated = true → настоящий план
+```
 
-Add `features/first30/data/<city>.ts` with the same `CityGuide` shape, register it in `data/index.ts`, and add the id to `CityId`. The data tests check ids, dependencies and cycles. No UI changes are needed.
+Сохранённые данные проходят валидацию (`model/sanitize.ts`): испорченный или подменённый localStorage не уронит приложение. Пока стор не загружен, запись в него заблокирована, поэтому прогресс одного города не затрёт другой.
 
-## Deploying
+### Дизайн
 
-- **Vercel**: import the repository, set `NEXT_PUBLIC_SITE_URL`, deploy.
-- **Docker**: `docker build -t aviora . && docker run -p 3000:3000 aviora`
-- **Any Node host**: `npm run build && npm start`
+Концепция **Morning Edition**: спокойный бумажный журнал об Италии и его страница «сегодня» для только что прилетевшего студента.
 
-## Content notes
+- Палитра из мудборда клиента: Cotton `#F2F3ED`, Forest `#4C513A`, Linen `#DDCCB7`, Cedar `#292728`.
+- Cormorant italic — голос человека (заголовки, цитаты, советы студентов). Inter — факты (сроки, суммы, кнопки).
+- Арки, плёночное зерно, золото только как акцент.
+- Цвет приоритета всегда продублирован формой точки и словом (WCAG 2.2 AA), есть тёмная тема и `prefers-reduced-motion`.
 
-Fees, addresses and procedures change. Task pages link to the official source for each step; check them before each intake. Photos come from the client's moodboard: confirm licences before launch.
+---
+
+## Запуск
+
+```bash
+npm install
+npm run dev          # http://localhost:3000
+npm run check        # lint + типы + тесты + сверка ключей перевода
+npm run build        # продакшн-сборка (standalone)
+npm start
+```
+
+Перед продакшн-сборкой скопируйте `.env.example` в `.env` и укажите `NEXT_PUBLIC_SITE_URL`.
+
+## Деплой
+
+| Куда | Как |
+|---|---|
+| **GitHub Pages** | Автоматически при пуше в `main` (`.github/workflows/deploy-pages.yml`): проверки → статический экспорт с `basePath` → публикация |
+| **Vercel** | Импортировать репозиторий, задать `NEXT_PUBLIC_SITE_URL`. Работают proxy, оптимизация картинок и security-заголовки |
+| **Docker** | `docker build -t aviora . && docker run -p 3000:3000 aviora` |
+
+Чем отличается GitHub Pages: это статический хостинг, поэтому в CI убираются server-only файлы (`proxy.ts`, catch-all 404), язык выбирается на клиенте, а изображения отдаются без серверной оптимизации. На Vercel и в Docker работает полная версия с CSP, HSTS и AVIF/WebP.
+
+## Как добавить город
+
+1. Создать `src/features/first30/data/<city>.ts` по типу `CityGuide`: задачи, окна по дням, зависимости, источники.
+2. Зарегистрировать город в `data/index.ts` и добавить id в `CityId`.
+
+Тесты сами проверят уникальность id, существование зависимостей и отсутствие циклов. Интерфейс менять не нужно.
+
+## Важно про контент
+
+Сборы, адреса и процедуры меняются. На каждой странице задачи есть ссылка на официальный источник, сверяйте их перед каждым набором. Фотографии взяты из мудборда клиента: перед публичным запуском нужно подтвердить права на них.

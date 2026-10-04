@@ -57,7 +57,7 @@ export function Postcard() {
           />
         </div>
       </div>
-      <div className="mt-16 h-3 bg-[url('/images/decor/lace-flag.jpg')] bg-cover bg-center opacity-90" aria-hidden="true" />
+      <Image src={images.laceFlag} alt="" sizes="100vw" className="mt-16 h-3 w-full object-cover opacity-90" />
     </section>
   );
 }

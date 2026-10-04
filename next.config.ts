@@ -2,6 +2,13 @@ import type { NextConfig } from "next";
 
 const isDev = process.env.NODE_ENV !== "production";
 
+/**
+ * GitHub Pages serves plain files from a sub-path, so that build is a static
+ * export: no proxy, no image optimizer, no custom headers.
+ */
+const isStaticExport = process.env.STATIC_EXPORT === "true";
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+
 const contentSecurityPolicy = [
   "default-src 'self'",
   `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ""}`,
@@ -27,13 +34,17 @@ const securityHeaders = [
   { key: "Cross-Origin-Opener-Policy", value: "same-origin" },
 ];
 
-const nextConfig: NextConfig = {
-  output: "standalone",
+const shared: NextConfig = {
   poweredByHeader: false,
+  reactStrictMode: true,
   turbopack: {
     resolveAlias: { "next-intl/config": "./src/i18n/request.ts" },
   },
-  reactStrictMode: true,
+};
+
+const serverConfig: NextConfig = {
+  ...shared,
+  output: "standalone",
   images: {
     formats: ["image/avif", "image/webp"],
     minimumCacheTTL: 60 * 60 * 24 * 30,
@@ -49,4 +60,12 @@ const nextConfig: NextConfig = {
   },
 };
 
-export default nextConfig;
+const staticExportConfig: NextConfig = {
+  ...shared,
+  output: "export",
+  basePath,
+  trailingSlash: true,
+  images: { unoptimized: true },
+};
+
+export default isStaticExport ? staticExportConfig : serverConfig;
