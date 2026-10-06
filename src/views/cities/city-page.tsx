@@ -35,14 +35,14 @@ export function CityPage({ city }: { city: ItalyCity }) {
           <h1 className="t-display-xl mt-5">{city.name[locale]}</h1>
           <p className="t-lead mt-6 max-w-[34ch] text-muted">{city.intro[locale]}</p>
         </div>
-        <div className="mx-auto w-full max-w-[380px] lg:col-span-4 lg:col-start-9 lg:max-w-none">
-          <div className="arch grain aspect-[4/5]">
+        <div className="w-full lg:col-span-5 lg:col-start-8">
+          <div className="frame grain aspect-[4/3]">
             <Image
               src={images[city.image]}
               alt={city.imageAlt[locale]}
               placeholder="blur"
               priority
-              sizes="(min-width: 1024px) 30vw, 380px"
+              sizes="(min-width: 1024px) 40vw, 100vw"
               className="img-film size-full object-cover"
             />
           </div>

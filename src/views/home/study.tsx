@@ -17,19 +17,24 @@ export function StudySection() {
     <section className="section">
       <div className="container-content grid gap-12 lg:grid-cols-12">
         <div className="lg:col-span-4">
-          <div className="arch grain mx-auto aspect-[3/4] max-w-[360px] lg:max-w-none">
+          <div className="frame grain aspect-[4/3] lg:aspect-[4/5]">
             <Image
               src={images.desk}
               alt={t("studyAlt")}
               placeholder="blur"
-              sizes="(min-width: 1024px) 30vw, 360px"
+              sizes="(min-width: 1024px) 30vw, 100vw"
               className="img-film size-full object-cover"
             />
           </div>
         </div>
         <div className="lg:col-span-7 lg:col-start-6">
-          <Eyebrow>{t("studyEyebrow")}</Eyebrow>
-          <h2 className="t-h2 mt-4 max-w-[18ch]">{t("studyTitle")}</h2>
+          <div className="flex items-start justify-between gap-6">
+            <div>
+              <Eyebrow>{t("studyEyebrow")}</Eyebrow>
+              <h2 className="t-h2 mt-4 max-w-[18ch]">{t("studyTitle")}</h2>
+            </div>
+            <Image src={images.shield} alt="" sizes="96px" className="img-cut mask-soft w-20 shrink-0 rotate-6 sm:w-24" />
+          </div>
           <p className="t-body-l mt-5 max-w-[48ch] text-muted">{t("studyText")}</p>
           <ul className="mt-10 grid gap-3 sm:grid-cols-2">
             {tiles.map((key, index) => (

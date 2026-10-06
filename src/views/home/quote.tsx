@@ -16,7 +16,10 @@ export function Quote() {
         className="img-cut pointer-events-none absolute -bottom-6 -left-10 hidden w-[340px] opacity-80 md:block"
       />
       <figure className="container-content relative text-center">
-        <Ornament className="mx-auto" />
+        <div className="mx-auto max-w-3xl overflow-hidden rounded-[var(--radius-lg)]">
+          <Image src={images.goldenSun} alt="" placeholder="blur" sizes="(min-width: 768px) 768px, 100vw" className="aspect-[21/8] w-full object-cover" />
+        </div>
+        <Ornament className="mx-auto mt-10" />
         <blockquote className="mx-auto mt-10 max-w-[22ch]">
           <p className="t-display-l">“{t.rich("quote", richTags)}”</p>
         </blockquote>

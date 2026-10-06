@@ -1,7 +1,7 @@
 import type { Resolution } from "./priorities";
 import type { BudgetCategory, CityId, StudentProfile } from "./types";
 
-const CITY_IDS: readonly CityId[] = ["milan", "amsterdam"];
+const CITY_IDS: readonly CityId[] = ["milan"];
 const BUDGET_LINES: readonly BudgetCategory[] = ["rent", "food", "transport", "phone", "health", "fun"];
 const ISO_DATE = /^\d{4}-\d{2}-\d{2}$/;
 const SAFE_KEY = /^[a-z0-9-]{1,64}$/;

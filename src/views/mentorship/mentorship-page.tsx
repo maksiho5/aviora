@@ -30,7 +30,7 @@ export function MentorshipPage() {
         </div>
         <div className="relative mx-auto w-full max-w-[320px] lg:col-span-4 lg:col-start-9">
           <Image src={images.arches} alt="" sizes="480px" className="img-cut absolute -inset-16 -z-0 size-[calc(100%+8rem)] object-contain opacity-60" />
-          <PortraitSlot initials="A" label="Aliya Kucherkova" className="relative" />
+          <PortraitSlot initials="A" label="Aliya" className="relative" />
         </div>
       </header>
 
@@ -85,7 +85,7 @@ export function MentorshipPage() {
           <div className="lg:col-span-4">
             <p className="t-eyebrow text-muted">{t("approachEyebrow")}</p>
             <p className="t-body-l mt-6 max-w-[36ch] text-muted">{t("approachText")}</p>
-            <Image src={images.hands} alt="" placeholder="blur" sizes="240px" className="img-mono mt-10 hidden aspect-[3/4] w-60 rounded-[4px] object-cover lg:block" />
+            <Image src={images.goodThings} alt="Good things take time" placeholder="blur" sizes="360px" className="mt-10 hidden w-full max-w-[360px] rounded-[var(--radius-md)] lg:block" />
           </div>
           <ol className="lg:col-span-7 lg:col-start-6">
             {approachQuestions.map((question, index) => (

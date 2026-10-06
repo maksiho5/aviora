@@ -202,8 +202,8 @@ export const caseSections: CaseSection[] = [
     kicker: l("Final product", "Итоговый продукт"),
     title: l("Know what to do next.", "Знай, что делать дальше."),
     body: l(
-      "Milan first. The same model already runs Amsterdam, where the problem is the same and the local system is different.",
-      "Сначала Милан. Та же модель уже работает для Амстердама: проблема та же, местная система другая.",
+      "Milan first. The tasks live in data, so another city is a new file, not a new interface.",
+      "Сначала Милан. Задачи живут в данных, поэтому новый город — это новый файл, а не новый интерфейс.",
     ),
   },
   {

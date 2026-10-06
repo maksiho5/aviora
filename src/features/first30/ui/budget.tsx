@@ -3,7 +3,7 @@
 import { useLocale, useTranslations } from "next-intl";
 import type { Locale } from "@/i18n/routing";
 import { Minus, Plus } from "@/shared/ui/icons";
-import { cities, getCity } from "../data";
+import { getCity } from "../data";
 import { budgetLines, firstMonthTotal, monthlyTotal, resolveBudget } from "../model/budget";
 import { tasksForProfile } from "../model/priorities";
 import { useFirst30Store, useStoreHydrated } from "../model/store";
@@ -122,26 +122,6 @@ export function Budget({ cityId }: { cityId: CityId }) {
         </button>
       </div>
 
-      <section className="mt-14">
-        <h2 className="t-h3">{t("compare")}</h2>
-        <ul className="mt-5 space-y-4">
-          {Object.values(cities).map((other) => {
-            const total = monthlyTotal(other.id === cityId ? budget : other.budget);
-            const widest = Math.max(...Object.values(cities).map((item) => monthlyTotal(item.budget)), monthly);
-            return (
-              <li key={other.id}>
-                <div className="flex justify-between text-sm">
-                  <span className="font-medium">{other.name[locale]}</span>
-                  <span className="num text-muted">{money.format(total)}</span>
-                </div>
-                <div className="mt-2 h-2 rounded-full bg-surface-2">
-                  <div className="h-full rounded-full bg-accent" style={{ width: `${(total / widest) * 100}%` }} />
-                </div>
-              </li>
-            );
-          })}
-        </ul>
-      </section>
     </div>
   );
 }

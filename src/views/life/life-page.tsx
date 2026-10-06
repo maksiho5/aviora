@@ -18,7 +18,16 @@ export function LifePage() {
 
   return (
     <>
-      <PageHeader kicker={t("kicker")} title={t("title")} lead={t("lead")} />
+      <PageHeader
+        kicker={t("kicker")}
+        title={t("title")}
+        lead={t("lead")}
+        aside={
+          <div className="frame mx-auto aspect-[4/5] max-w-[340px]">
+            <Image src={images.bellaGiornata} alt="Bella giornata" priority placeholder="blur" sizes="340px" className="size-full object-cover" />
+          </div>
+        }
+      />
 
       <section className="container-content pb-[var(--section-y)]">
         <ol>

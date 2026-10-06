@@ -265,8 +265,8 @@
     padding-block: var(--section-y);
   }
 
-  .arch {
-    border-radius: 999px 999px 0 0;
+  .frame {
+    border-radius: var(--radius-lg);
     overflow: hidden;
   }
   .img-film {

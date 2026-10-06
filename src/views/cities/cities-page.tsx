@@ -1,7 +1,9 @@
+import Image from "next/image";
 import { useLocale, useTranslations } from "next-intl";
 import { italyCities } from "@/content/cities";
 import { Link } from "@/i18n/navigation";
 import type { Locale } from "@/i18n/routing";
+import { images } from "@/shared/assets/images";
 import { ArrowRight } from "@/shared/ui/icons";
 import { PageHeader } from "@/shared/ui/page-header";
 import { CityIndex } from "@/widgets/city-index";
@@ -16,7 +18,16 @@ export function CitiesPage() {
 
   return (
     <>
-      <PageHeader kicker={t("kicker")} title={t("title")} lead={t("lead")} />
+      <PageHeader
+        kicker={t("kicker")}
+        title={t("title")}
+        lead={t("lead")}
+        aside={
+          <div className="frame mx-auto aspect-square max-w-[420px]">
+            <Image src={images.italyOrnament} alt="Italy" priority placeholder="blur" sizes="420px" className="size-full object-cover" />
+          </div>
+        }
+      />
 
       <section className="container-content">
         <ul className="grid gap-px overflow-hidden rounded-[var(--radius-lg)] bg-line sm:grid-cols-2 lg:grid-cols-4">

@@ -1,7 +1,9 @@
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
+import type { Locale } from "@/i18n/routing";
 import { Link } from "@/i18n/navigation";
 import { LanguageSwitch } from "@/shared/ui/language-switch";
 import { ThemeToggle } from "@/shared/ui/theme-toggle";
+import { cityIds, getCity } from "../data";
 import type { CityId } from "../model/types";
 import { AppTabsDesktop, AppTabsMobile } from "./app-nav";
 import { CitySwitch } from "./city-switch";
@@ -9,6 +11,7 @@ import { CitySwitch } from "./city-switch";
 export function AppShell({ city, children }: { city: CityId; children: React.ReactNode }) {
   const t = useTranslations("first30");
   const nav = useTranslations("nav");
+  const locale = useLocale() as Locale;
 
   return (
     <div className="min-h-dvh pb-24 md:pb-0">
@@ -23,7 +26,13 @@ export function AppShell({ city, children }: { city: CityId; children: React.Rea
           <Link href="/" aria-label={nav("home")} className="font-serif text-2xl font-semibold tracking-[0.02em] no-underline">
             Aviora
           </Link>
-          <CitySwitch current={city} />
+          {cityIds.length > 1 ? (
+            <CitySwitch current={city} />
+          ) : (
+            <span className="inline-flex min-h-11 items-center rounded-full border border-line-strong px-4 text-sm font-semibold">
+              {getCity(city).name[locale]}
+            </span>
+          )}
           <div className="ml-auto flex items-center gap-3">
             <AppTabsDesktop city={city} />
             <LanguageSwitch />

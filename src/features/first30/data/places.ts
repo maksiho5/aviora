@@ -47,40 +47,6 @@ const landmarks: Record<CityId, MapPlace[]> = {
       taskIds: ["university-enrolment"],
     },
   ],
-  amsterdam: [
-    {
-      id: "centraal",
-      name: "Amsterdam Centraal",
-      lat: 52.3791,
-      lng: 4.9003,
-      note: l("Main train station", "Главный вокзал"),
-      taskIds: ["ovpay"],
-    },
-    {
-      id: "stadhuis",
-      name: "Stadhuis Amsterdam",
-      lat: 52.3675,
-      lng: 4.9013,
-      note: l("City Hall, Amstel 1. Registration appointments", "Ратуша, Amstel 1. Запись на регистрацию"),
-      taskIds: ["municipality-registration"],
-    },
-    {
-      id: "uva",
-      name: "University of Amsterdam · Roeterseiland",
-      lat: 52.3637,
-      lng: 4.9119,
-      note: l("Roeterseiland campus", "Кампус Roeterseiland"),
-      taskIds: ["student-card-nl"],
-    },
-    {
-      id: "vu",
-      name: "Vrije Universiteit Amsterdam",
-      lat: 52.3343,
-      lng: 4.8656,
-      note: l("Zuidas campus", "Кампус Zuidas"),
-      taskIds: ["student-card-nl"],
-    },
-  ],
 };
 
 export function cityPlaces(cityId: CityId): MapPlace[] {

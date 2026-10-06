@@ -10,7 +10,13 @@ export function Postcard() {
   return (
     <section className="section overflow-hidden bg-bg-warm">
       <div className="container-content grid items-center gap-14 lg:grid-cols-12">
-        <figure className="mx-auto w-full max-w-[420px] -rotate-2 bg-white p-3 shadow-[var(--shadow-pop)] lg:col-span-5 lg:max-w-none">
+        <figure className="relative mx-auto w-full max-w-[420px] -rotate-2 bg-white p-3 shadow-[var(--shadow-pop)] lg:col-span-5 lg:max-w-none">
+          <Image
+            src={images.postmark}
+            alt=""
+            sizes="160px"
+            className="pointer-events-none absolute -right-10 -top-12 z-10 w-40 rotate-12 opacity-80 mix-blend-multiply"
+          />
           <div className="grain">
             <Image
               src={images.colosseum}
@@ -22,9 +28,7 @@ export function Postcard() {
           </div>
           <figcaption className="flex items-center justify-between px-1 pb-1 pt-3 font-serif text-lg italic text-[#292728]">
             <span>Roma</span>
-            <span aria-hidden="true" className="grid size-9 place-items-center border border-dashed border-oatmeal text-[0.625rem] not-italic tracking-widest">
-              IT
-            </span>
+            <Image src={images.stamp} alt="" sizes="48px" className="w-12 rotate-3" />
           </figcaption>
         </figure>
         <div className="lg:col-span-6 lg:col-start-7">

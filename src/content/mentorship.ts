@@ -122,7 +122,7 @@ export const approachQuestions: Localized[] = [
 
 export const team: TeamMember[] = [
   {
-    name: l("Aliya Kucherkova", "Алия Кучеркова"),
+    name: l("Aliya", "Алия"),
     initials: "AK",
     role: l(
       "Founder & CEO · Project Lead · Italy Education & Relocation Mentor",

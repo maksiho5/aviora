@@ -1,8 +1,7 @@
 import type { CityGuide, CityId } from "../model/types";
-import { amsterdam } from "./amsterdam";
 import { milan } from "./milan";
 
-export const cities: Record<CityId, CityGuide> = { milan, amsterdam };
+export const cities: Record<CityId, CityGuide> = { milan };
 
 export const cityIds = Object.keys(cities) as CityId[];
 

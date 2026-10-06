@@ -32,8 +32,8 @@ export const italyCities: ItalyCity[] = [
     slug: "milan",
     name: l("Milan", "Милан"),
     region: l("Lombardy", "Ломбардия"),
-    image: "desk",
-    imageAlt: l("A desk with a laptop, notes and coffee", "Стол с ноутбуком, конспектами и кофе"),
+    image: "duomo",
+    imageAlt: l("Milan Cathedral and the square in front of it", "Миланский собор и площадь перед ним"),
     rhythm: l("Moves faster", "Двигается быстрее"),
     intro: l(
       "Design, business and engineering in a city that works like a clock. Expensive, international, and full of people who arrived last year and figured it out.",
@@ -97,8 +97,8 @@ export const italyCities: ItalyCity[] = [
     slug: "rome",
     name: l("Rome", "Рим"),
     region: l("Lazio", "Лацио"),
-    image: "colosseum",
-    imageAlt: l("The Colosseum on film", "Колизей на плёнку"),
+    image: "colosseumNight",
+    imageAlt: l("The Colosseum lit up at dusk", "Колизей в вечерней подсветке"),
     rhythm: l("Feels international from day one", "С первого дня ощущается интернациональным"),
     intro: l(
       "A capital that is also a very big village. Slow bureaucracy, fast scooters, and history on the way to the supermarket.",

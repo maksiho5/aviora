@@ -63,18 +63,19 @@ export function TeamPage() {
         </ul>
       </section>
 
-      <section className="section bg-deep text-on-deep">
+      <section className="section bg-bg-warm">
         <div className="container-content grid gap-8 lg:grid-cols-12">
           <h2 className="t-h2 lg:col-span-5">{t("behindTitle")}</h2>
-          <p className="t-body-l text-on-deep-muted lg:col-span-6 lg:col-start-7">{t("behindText")}</p>
+          <p className="t-body-l text-muted lg:col-span-6 lg:col-start-7">{t("behindText")}</p>
         </div>
       </section>
 
-      <section className="section bg-bg-warm text-center">
-        <div className="container-content">
+      <section className="section relative overflow-hidden bg-deep text-center text-on-deep">
+        <Image src={images.fireworks} alt="" sizes="100vw" className="pointer-events-none absolute inset-0 size-full object-cover opacity-45" />
+        <div className="container-content relative">
           <p className="t-display-xl mx-auto max-w-[12ch]">{t("closing")}</p>
-          <p className="t-body-l mx-auto mt-8 max-w-[48ch] text-muted">{t("closingText")}</p>
-          <TelegramButton className="mt-10" />
+          <p className="t-body-l mx-auto mt-8 max-w-[48ch] text-on-deep-muted">{t("closingText")}</p>
+          <TelegramButton variant="inverse" className="mt-10" />
         </div>
       </section>
     </>

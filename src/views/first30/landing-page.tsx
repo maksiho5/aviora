@@ -1,25 +1,17 @@
 import { useLocale, useTranslations } from "next-intl";
 import { cities } from "@/features/first30/data";
 import { DashboardPreview } from "@/features/first30/ui/dashboard-preview";
-import { Link } from "@/i18n/navigation";
 import type { Locale } from "@/i18n/routing";
 import { ButtonLink } from "@/shared/ui/button";
-import { ArrowRight, Building, Speech } from "@/shared/ui/icons";
+import { Building, Speech } from "@/shared/ui/icons";
 import { richTags } from "@/shared/ui/rich";
 import { CityCards } from "./city-cards";
-
-interface HoodRow {
-  label: string;
-  milan: string;
-  amsterdam: string;
-}
 
 export function First30Landing() {
   const t = useTranslations("first30.landing");
   const task = useTranslations("first30.task");
   const locale = useLocale() as Locale;
   const steps = t.raw("how") as string[];
-  const rows = t.raw("hoodRows") as HoodRow[];
   const officialSample = cities.milan.tasks.find((item) => item.id === "tax-code");
   const tip = cities.milan.tips[0];
 
@@ -32,8 +24,8 @@ export function First30Landing() {
           <p className="t-lead mt-6 text-muted">{t("lead")}</p>
           <div className="mt-10 flex flex-wrap gap-3">
             <ButtonLink href="/first-30/milan/onboarding">{t("start")}</ButtonLink>
-            <ButtonLink href="/first-30/amsterdam/onboarding" variant="secondary">
-              {t("seeAmsterdam")}
+            <ButtonLink href="/case-study" variant="secondary">
+              {t("caseStudy")}
             </ButtonLink>
           </div>
           <p className="mt-6 text-sm text-muted">{t("note")}</p>
@@ -100,53 +92,6 @@ export function First30Landing() {
         </div>
       </section>
 
-      <section className="section bg-surface-2">
-        <div className="container-content grid gap-10 lg:grid-cols-12">
-          <div className="lg:col-span-4">
-            <p className="t-eyebrow text-muted">{t("hoodEyebrow")}</p>
-            <h2 className="t-h2 mt-4">{t("hoodTitle")}</h2>
-          </div>
-          <div className="lg:col-span-8">
-            <div className="overflow-x-auto rounded-[var(--radius-lg)] bg-surface">
-              <table className="w-full min-w-[480px] text-left">
-                <caption className="sr-only">{t("hoodChanges")}</caption>
-                <thead>
-                  <tr className="border-b border-line text-sm text-muted">
-                    <th scope="col" className="p-5 font-semibold">
-                      {t("hoodChanges")}
-                    </th>
-                    <th scope="col" className="p-5 font-serif text-xl font-medium italic text-text">
-                      {cities.milan.name[locale]}
-                    </th>
-                    <th scope="col" className="p-5 font-serif text-xl font-medium italic text-text">
-                      {cities.amsterdam.name[locale]}
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {rows.map((row) => (
-                    <tr key={row.label} className="border-b border-line last:border-0">
-                      <th scope="row" className="p-5 text-sm font-medium">
-                        {row.label}
-                      </th>
-                      <td className="p-5">{row.milan}</td>
-                      <td className="p-5">{row.amsterdam}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-            <p className="mt-6">
-              <span className="font-semibold">{t("hoodStays")}: </span>
-              <span className="text-muted">{t("hoodSame")}</span>
-            </p>
-            <Link href="/case-study" className="mt-8 inline-flex min-h-11 items-center gap-2 font-semibold no-underline hover:underline">
-              {t("caseStudy")}
-              <ArrowRight size={18} />
-            </Link>
-          </div>
-        </div>
-      </section>
     </>
   );
 }

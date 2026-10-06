@@ -11,7 +11,6 @@ import { TelegramButton } from "@/shared/ui/telegram-button";
 
 const terms = {
   milan: ["Codice fiscale", "Permesso", "ATM"],
-  amsterdam: ["BSN", "Gemeente", "OVpay"],
 } as const;
 
 export function CityCards() {
@@ -21,7 +20,7 @@ export function CityCards() {
   const profiles = useFirst30Store((state) => state.profiles);
 
   return (
-    <ul className="grid gap-4 md:grid-cols-3">
+    <ul className="grid gap-4 md:grid-cols-2">
       {cityIds.map((id) => {
         const city = cities[id];
         const profile = hydrated ? profiles[id] : undefined;
@@ -43,7 +42,7 @@ export function CityCards() {
             </p>
             <Link
               href={profile ? `/first-30/${id}` : `/first-30/${id}/onboarding`}
-              className={buttonClass(id === "milan" ? "primary" : "secondary", "mt-6 self-start")}
+              className={buttonClass("primary", "mt-6 self-start")}
             >
               {t("open", { city: city.name[locale] })}
             </Link>

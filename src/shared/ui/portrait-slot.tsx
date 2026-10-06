@@ -6,7 +6,7 @@ export function PortraitSlot({ initials, label, className }: { initials: string;
     <div
       role="img"
       aria-label={label}
-      className={cn("arch grid aspect-[4/5] w-full place-items-center bg-linen text-forest", className)}
+      className={cn("frame grid aspect-[4/5] w-full place-items-center bg-linen text-forest", className)}
     >
       <span className="font-serif text-[clamp(4rem,3rem+5vw,8rem)] italic leading-none" aria-hidden="true">
         {initials}

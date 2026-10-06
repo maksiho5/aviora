@@ -45,23 +45,35 @@
   },
   "home": {
     "eyebrow": "Aviora — Italy, more real",
-    "title": "Beyond the postcard.",
+    "title": "Beyond the postcard",
     "lead": "Discover Italy. Study here. Live here. Make it yours.",
     "explore": "Explore Italy",
-    "heroAlt": "A stone arch opening onto the sea and palm trees",
+    "heroAlt": "The Vittoriano in Rome with the Italian flag in the wind",
     "lakeAlt": "A balcony over an Italian lake",
     "ideaEyebrow": "01 — The idea",
     "ideaText": "Aviora was founded by Aliya with a simple idea: make Italy <em>easier to discover, understand and experience</em>.",
     "ideaMore": "Moving to another country can feel overwhelming. Universities to compare, requirements to understand, documents to prepare, housing to find. Aviora brings the useful pieces together in one clear place.",
-    "ideaSign": "Aliya Kucherkova, founder",
+    "ideaSign": "Aliya, founder",
     "realEyebrow": "02 — Built around real life",
     "realTitle": "Italy is more than famous landmarks.",
     "realText": "It is the first university application. The first train to a new city. The search for an apartment. A morning coffee before class.",
     "realAlt": "A student reading among open books",
     "realItems": {
-      "media": { "title": "Read", "text": "Study, life and cities, written for people who are about to live there.", "link": "Start with a city" },
-      "mentorship": { "title": "Talk", "text": "Student-to-student mentoring, from the first idea to the first day on campus.", "link": "See mentorship" },
-      "tools": { "title": "Try", "text": "FIRST 30, a plan for your first month that changes every day.", "link": "Open First 30" }
+      "media": {
+        "title": "Read",
+        "text": "Study, life and cities, written for people who are about to live there.",
+        "link": "Start with a city"
+      },
+      "mentorship": {
+        "title": "Talk",
+        "text": "Student-to-student mentoring, from the first idea to the first day on campus.",
+        "link": "See mentorship"
+      },
+      "tools": {
+        "title": "Try",
+        "text": "FIRST 30, a plan for your first month that changes every day.",
+        "link": "Open First 30"
+      }
     },
     "studyEyebrow": "03 — Study in Italy",
     "studyTitle": "More than choosing a university.",
@@ -70,9 +82,21 @@
     "lifeEyebrow": "04 — Life in Italy",
     "lifeTitle": "Italy is made of small details.",
     "moments": {
-      "coffee": { "time": "08:10", "title": "Coffee at the bar", "text": "Standing at the counter, a euro and a bit, gone in two minutes." },
-      "train": { "time": "18:40", "title": "The crowded train", "text": "Everyone is going home. You are, too, it just doesn’t feel like home yet." },
-      "market": { "time": "Saturday", "title": "The market", "text": "The stall owner remembers you the third time. That is when a city starts to feel familiar." }
+      "coffee": {
+        "time": "08:10",
+        "title": "Coffee at the bar",
+        "text": "Standing at the counter, a euro and a bit, gone in two minutes."
+      },
+      "train": {
+        "time": "18:40",
+        "title": "The crowded train",
+        "text": "Everyone is going home. You are, too, it just doesn’t feel like home yet."
+      },
+      "market": {
+        "time": "Saturday",
+        "title": "The market",
+        "text": "The stall owner remembers you the third time. That is when a city starts to feel familiar."
+      }
     },
     "citiesEyebrow": "05 — Cities",
     "citiesTitle": "Every Italian city has its own rhythm.",
@@ -84,21 +108,38 @@
     "first30Cta": "Open First 30 — Milan",
     "previewLabel": "Preview of the FIRST 30 dashboard on day 7",
     "postcardEyebrow": "07 — Beyond the postcard",
-    "postcardLines": ["Not perfect.", "Not exaggerated.", "Not filtered.", "Just more real."],
+    "postcardLines": [
+      "Not perfect.",
+      "Not exaggerated.",
+      "Not filtered.",
+      "Just more real."
+    ],
     "postcardText": "There is the Italy seen by tourists, and the Italy lived by students, newcomers and people who decide to stay. Aviora is about the second one.",
     "postcardAlt": "The Colosseum on a summer day, shot on film",
     "postcardRawAlt": "The Colosseum from below, with a construction crane beside it",
     "quote": "Italy can feel complicated when you are just starting out. Aviora was created to make that journey feel a little clearer and a lot less <circle>overwhelming</circle>.",
-    "quoteBy": "Aliya Kucherkova, Founder & CEO",
+    "quoteBy": "Aliya, Founder & CEO",
     "startEyebrow": "08 — A place to start",
     "startTitle": "Take the next step from here.",
     "doors": {
-      "read": { "title": "Read", "text": "Find a university, read a guide, discover a city." },
-      "try": { "title": "Try", "text": "Plan your first month in Milan, one day at a time." },
-      "talk": { "title": "Talk", "text": "Get a clear roadmap with a mentor who did it." }
+      "read": {
+        "title": "Read",
+        "text": "Find a university, read a guide, discover a city."
+      },
+      "try": {
+        "title": "Try",
+        "text": "Plan your first month in Milan, one day at a time."
+      },
+      "talk": {
+        "title": "Talk",
+        "text": "Get a clear roadmap with a mentor who did it."
+      }
     },
     "followTitle": "@avioraItalyEu",
-    "followText": "New guides, useful information, discoveries and everyday Italy, on Telegram."
+    "followText": "New guides, useful information, discoveries and everyday Italy, on Telegram.",
+    "duomoAlt": "Milan Cathedral and the square in front of it",
+    "palmsAlt": "Palm trees against a pale sky",
+    "teaserAlt": "A boarding pass to Italy"
   },
   "study": {
     "kicker": "Study in Italy",
@@ -110,10 +151,22 @@
       "title": "Admissions",
       "text": "University applications, entry requirements, important dates and application steps.",
       "steps": [
-        { "title": "Choose", "text": "Shortlist programmes by language of instruction, city and entry requirements." },
-        { "title": "Apply", "text": "Most universities run their own online portal. Deadlines for non-EU applicants come first." },
-        { "title": "Documents", "text": "Diploma, transcripts, translations and sometimes a declaration of value. Start early." },
-        { "title": "Decision", "text": "After admission, the visa and pre-enrolment steps begin. Then: the first month." }
+        {
+          "title": "Choose",
+          "text": "Shortlist programmes by language of instruction, city and entry requirements."
+        },
+        {
+          "title": "Apply",
+          "text": "Most universities run their own online portal. Deadlines for non-EU applicants come first."
+        },
+        {
+          "title": "Documents",
+          "text": "Diploma, transcripts, translations and sometimes a declaration of value. Start early."
+        },
+        {
+          "title": "Decision",
+          "text": "After admission, the visa and pre-enrolment steps begin. Then: the first month."
+        }
       ],
       "glance": "At a glance",
       "intake": "Most intakes start in September. Applications often open in autumn or winter of the year before.",
@@ -130,9 +183,18 @@
       "title": "Scholarships",
       "text": "Financial support, tuition fees and opportunities available to students.",
       "items": [
-        { "title": "Regional", "text": "Regional right-to-study grants (DSU) can cover fees, housing and meals. Based on family income." },
-        { "title": "University", "text": "Merit scholarships and fee waivers run by each university, often with their own deadlines." },
-        { "title": "National", "text": "Government programmes for international students, announced once a year." }
+        {
+          "title": "Regional",
+          "text": "Regional right-to-study grants (DSU) can cover fees, housing and meals. Based on family income."
+        },
+        {
+          "title": "University",
+          "text": "Merit scholarships and fee waivers run by each university, often with their own deadlines."
+        },
+        {
+          "title": "National",
+          "text": "Government programmes for international students, announced once a year."
+        }
       ],
       "note": "Always check the official call for the current year. Amounts and deadlines change."
     },
@@ -151,11 +213,36 @@
     "title": "Small things, said slowly.",
     "lead": "These everyday moments matter as much as the famous landmarks.",
     "moments": [
-      { "time": "08:10", "title": "Coffee at the bar", "text": "You order at the counter and drink it standing. Sitting at a table costs more, and nobody minds you leaving after two minutes. A cappuccino after lunch is not illegal, just a little unusual.", "fact": "Standing is cheaper than sitting." },
-      { "time": "13:00", "title": "Lunch closes things", "text": "Many offices, small shops and pharmacies close in the early afternoon. Plan errands for the morning and you will spend less time in queues.", "fact": "Mornings are for paperwork." },
-      { "time": "18:40", "title": "The crowded train", "text": "Regional trains fill up at rush hour. Validate a paper ticket before you board, or tap a contactless card where it is accepted.", "fact": "Validate paper tickets before boarding." },
-      { "time": "Saturday", "title": "The market", "text": "Neighbourhood markets sell fruit and vegetables for less than supermarkets. Go late and prices drop. Go often and people start to recognise you.", "fact": "Bring your own bag." },
-      { "time": "Sunday", "title": "The slow day", "text": "Many shops close. Museums open. The first Sunday of the month, many state museums are free.", "fact": "First Sundays: free state museums." }
+      {
+        "time": "08:10",
+        "title": "Coffee at the bar",
+        "text": "You order at the counter and drink it standing. Sitting at a table costs more, and nobody minds you leaving after two minutes. A cappuccino after lunch is not illegal, just a little unusual.",
+        "fact": "Standing is cheaper than sitting."
+      },
+      {
+        "time": "13:00",
+        "title": "Lunch closes things",
+        "text": "Many offices, small shops and pharmacies close in the early afternoon. Plan errands for the morning and you will spend less time in queues.",
+        "fact": "Mornings are for paperwork."
+      },
+      {
+        "time": "18:40",
+        "title": "The crowded train",
+        "text": "Regional trains fill up at rush hour. Validate a paper ticket before you board, or tap a contactless card where it is accepted.",
+        "fact": "Validate paper tickets before boarding."
+      },
+      {
+        "time": "Saturday",
+        "title": "The market",
+        "text": "Neighbourhood markets sell fruit and vegetables for less than supermarkets. Go late and prices drop. Go often and people start to recognise you.",
+        "fact": "Bring your own bag."
+      },
+      {
+        "time": "Sunday",
+        "title": "The slow day",
+        "text": "Many shops close. Museums open. The first Sunday of the month, many state museums are free.",
+        "fact": "First Sundays: free state museums."
+      }
     ],
     "radioAlt": "A vinyl record spinning on a turntable",
     "radioTitle": "On the radio",
@@ -166,7 +253,12 @@
     "kicker": "Cities",
     "title": "Five cities, four lenses.",
     "lead": "Some are built around universities. Some move faster. Some are quieter. Some feel international from the first day.",
-    "lenses": { "study": "Study", "live": "Live", "cost": "Cost", "discover": "Discover" },
+    "lenses": {
+      "study": "Study",
+      "live": "Live",
+      "cost": "Cost",
+      "discover": "Discover"
+    },
     "lensText": {
       "study": "Universities and student life.",
       "live": "Neighbourhoods, housing and everyday routines.",
@@ -194,14 +286,46 @@
     "officialTitle": "How we mark information",
     "officialText": "Official information comes from the institution and links to it. From students is what people say it was like. We never mix the two.",
     "topics": {
-      "documents": { "title": "Documents", "when": "you are preparing your application or visa.", "text": "Passport, diploma, transcripts, translations and declarations of value. Keep digital copies of everything, and five paper copies of your passport." },
-      "housing": { "title": "Housing", "when": "you are looking for a room or about to sign.", "text": "Start early, never pay a deposit without a contract, and make sure the lease is registered. A registered lease is your proof of address." },
-      "transport": { "title": "Transport", "when": "you need to get around the city or the country.", "text": "City passes are cheaper under 26 or 27. Regional trains are cheap, high-speed trains are cheaper when booked early." },
-      "banking": { "title": "Banking", "when": "you need to pay rent or receive a scholarship.", "text": "You need a codice fiscale to open an Italian account. Online banks are faster to open; local banks are sometimes required for scholarships." },
-      "healthcare": { "title": "Healthcare", "when": "you need insurance or a doctor.", "text": "Non-EU students need valid insurance for the permit. Registering with the national service gives access to a family doctor." },
-      "university": { "title": "University procedures", "when": "you are enrolling or need your student card.", "text": "Enrolment, student ID, exam registration and the international office. Welcome weeks fix most problems in person." },
-      "expenses": { "title": "Everyday expenses", "when": "you are planning a monthly budget.", "text": "Rent is the biggest line. Groceries, transport and a phone plan come next. Coffee is cheap if you stand." },
-      "services": { "title": "Local services", "when": "you need a post office, a pharmacy or a copy shop.", "text": "Post offices handle permits. Pharmacies have a green cross. Tabaccherie sell stamps, tickets and the marca da bollo." }
+      "documents": {
+        "title": "Documents",
+        "when": "you are preparing your application or visa.",
+        "text": "Passport, diploma, transcripts, translations and declarations of value. Keep digital copies of everything, and five paper copies of your passport."
+      },
+      "housing": {
+        "title": "Housing",
+        "when": "you are looking for a room or about to sign.",
+        "text": "Start early, never pay a deposit without a contract, and make sure the lease is registered. A registered lease is your proof of address."
+      },
+      "transport": {
+        "title": "Transport",
+        "when": "you need to get around the city or the country.",
+        "text": "City passes are cheaper under 26 or 27. Regional trains are cheap, high-speed trains are cheaper when booked early."
+      },
+      "banking": {
+        "title": "Banking",
+        "when": "you need to pay rent or receive a scholarship.",
+        "text": "You need a codice fiscale to open an Italian account. Online banks are faster to open; local banks are sometimes required for scholarships."
+      },
+      "healthcare": {
+        "title": "Healthcare",
+        "when": "you need insurance or a doctor.",
+        "text": "Non-EU students need valid insurance for the permit. Registering with the national service gives access to a family doctor."
+      },
+      "university": {
+        "title": "University procedures",
+        "when": "you are enrolling or need your student card.",
+        "text": "Enrolment, student ID, exam registration and the international office. Welcome weeks fix most problems in person."
+      },
+      "expenses": {
+        "title": "Everyday expenses",
+        "when": "you are planning a monthly budget.",
+        "text": "Rent is the biggest line. Groceries, transport and a phone plan come next. Coffee is cheap if you stand."
+      },
+      "services": {
+        "title": "Local services",
+        "when": "you need a post office, a pharmacy or a copy shop.",
+        "text": "Post offices handle permits. Pharmacies have a green cross. Tabaccherie sell stamps, tickets and the marca da bollo."
+      }
     }
   },
   "mentorship": {
@@ -270,7 +394,6 @@
       "title": "You made it. Now what?",
       "lead": "Your first month, made manageable.",
       "start": "Start for Milan",
-      "seeAmsterdam": "See Amsterdam",
       "note": "Free. No account. Your progress stays in your browser.",
       "insight": "Students don’t lack information. They lack <circle>prioritization</circle>.",
       "howEyebrow": "How it works",
@@ -288,17 +411,7 @@
       "notStarted": "Not started",
       "open": "Open {city}",
       "nextCity": "Your city next?",
-      "nextCityText": "Tell Aviora which city should come after Amsterdam.",
-      "hoodEyebrow": "Under the hood",
-      "hoodTitle": "Same system, new rules.",
-      "hoodChanges": "Changes per city",
-      "hoodStays": "Stays the same",
-      "hoodRows": [
-        { "label": "Your ID number", "milan": "Codice fiscale", "amsterdam": "BSN" },
-        { "label": "Registration", "milan": "Permesso at the post office", "amsterdam": "Municipality (BRP)" },
-        { "label": "Transport", "milan": "ATM pass", "amsterdam": "OVpay and a bike" }
-      ],
-      "hoodSame": "Three priorities a day, dependencies between tasks, official sources apart from student tips.",
+      "nextCityText": "Tell Aviora which city should come next.",
       "caseStudy": "Read how it was designed"
     },
     "nav": {
@@ -311,8 +424,7 @@
     },
     "city": {
       "switch": "Change city",
-      "current": "Current city: {city}",
-      "changes": "What changes in {city}"
+      "current": "Current city: {city}"
     },
     "onboarding": {
       "step": "Step {current} of {total}",
@@ -455,7 +567,12 @@
       "days": "Days {from}–{to}",
       "today": "Today",
       "dayChip": "Day {day}",
-      "filters": { "all": "All", "important": "Important", "blocked": "Waiting", "done": "Done" },
+      "filters": {
+        "all": "All",
+        "important": "Important",
+        "blocked": "Waiting",
+        "done": "Done"
+      },
       "empty": "Nothing here.",
       "skippedNote": "Not applicable"
     },
@@ -471,7 +588,11 @@
       "loadNote": "The map is loaded from OpenStreetMap only when you ask for it.",
       "frameTitle": "Map of {place}",
       "nearby": "Find nearby",
-      "searches": { "supermarket": "Supermarkets", "pharmacy": "Pharmacies", "post": "Post offices" }
+      "searches": {
+        "supermarket": "Supermarkets",
+        "pharmacy": "Pharmacies",
+        "post": "Post offices"
+      }
     },
     "budget": {
       "title": "Your monthly budget",
@@ -491,8 +612,7 @@
       "decrease": "Decrease {line}",
       "increase": "Increase {line}",
       "share": "{percent}% of your month",
-      "note": "Estimates for 2026. Check official pages for fees.",
-      "compare": "Milan vs. Amsterdam"
+      "note": "Estimates for 2026. Check official pages for fees."
     },
     "footer": "Official information is marked Official. Student tips are marked From students. Not legal advice."
   },
@@ -503,23 +623,58 @@
     "roleLabel": "Role",
     "scopeLabel": "Scope",
     "role": "Product, UX research, interaction and visual design",
-    "scope": "Milan first, Amsterdam second",
+    "scope": "Milan, Italy",
     "contents": "Contents",
     "tryIt": "Try the prototype",
     "before": "Before",
     "after": "After",
-    "beforeItems": ["Get codice fiscale", "Permit kit", "SIM card", "Bank account", "Health insurance", "Student ID", "Transport pass", "Find housing documents", "Join a student group"],
-    "afterItems": ["Residence registration", "Student ID", "Find a supermarket"],
-    "flow": ["Arrival", "Onboarding", "Dashboard", "Task", "Completion"],
+    "beforeItems": [
+      "Get codice fiscale",
+      "Permit kit",
+      "SIM card",
+      "Bank account",
+      "Health insurance",
+      "Student ID",
+      "Transport pass",
+      "Find housing documents",
+      "Join a student group"
+    ],
+    "afterItems": [
+      "Residence registration",
+      "Student ID",
+      "Find a supermarket"
+    ],
+    "flow": [
+      "Arrival",
+      "Onboarding",
+      "Dashboard",
+      "Task",
+      "Completion"
+    ],
     "architecture": [
-      { "title": "Today", "question": "What now?" },
-      { "title": "Timeline", "question": "What is coming?" },
-      { "title": "Task", "question": "How exactly?" },
-      { "title": "Map", "question": "Where?" },
-      { "title": "Budget", "question": "How much?" }
+      {
+        "title": "Today",
+        "question": "What now?"
+      },
+      {
+        "title": "Timeline",
+        "question": "What is coming?"
+      },
+      {
+        "title": "Task",
+        "question": "How exactly?"
+      },
+      {
+        "title": "Map",
+        "question": "Where?"
+      },
+      {
+        "title": "Budget",
+        "question": "How much?"
+      }
     ],
     "findingLabel": "Finding {number}",
-    "scale": "The concept can later scale to Amsterdam, Berlin, Paris and other student cities."
+    "scale": "The concept can later scale to Rome, Bologna and other student cities."
   },
   "common": {
     "readMore": "Read more",

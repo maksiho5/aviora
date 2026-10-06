@@ -15,7 +15,7 @@ export interface CityRow {
   imageAlt: string;
 }
 
-/** Hover or focus a row and the arch on the right follows. Touch users simply tap through. */
+/** Hover or focus a row and the photo on the right follows. Touch users simply tap through. */
 export function CityIndex({ rows }: { rows: CityRow[] }) {
   const [active, setActive] = useState(0);
 
@@ -30,7 +30,7 @@ export function CityIndex({ rows }: { rows: CityRow[] }) {
               onFocus={() => setActive(index)}
               className="group flex items-center gap-5 py-5 no-underline lg:py-6"
             >
-              <span className="arch relative size-[72px] shrink-0 lg:hidden">
+              <span className="relative size-[72px] shrink-0 overflow-hidden rounded-[var(--radius-sm)] lg:hidden">
                 <Image src={city.image} alt="" sizes="72px" className="img-film size-full object-cover" />
               </span>
               <span className="hidden w-10 font-serif text-xl italic text-muted lg:block">0{index + 1}</span>
@@ -48,7 +48,7 @@ export function CityIndex({ rows }: { rows: CityRow[] }) {
         ))}
       </ol>
       <div className="hidden lg:col-span-4 lg:col-start-9 lg:block">
-        <div className="arch grain sticky top-28 aspect-[4/5]">
+        <div className="frame grain sticky top-28 aspect-[4/3]">
           {rows.map((city, index) => (
             <Image
               key={city.slug}

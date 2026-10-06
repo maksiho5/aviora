@@ -2,7 +2,7 @@ import type { Localized } from "@/shared/lib/localized";
 
 export type { Localized };
 
-export type CityId = "milan" | "amsterdam";
+export type CityId = "milan";
 
 export type Urgency = "critical" | "important" | "easy";
 
